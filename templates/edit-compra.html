@@ -1,0 +1,59 @@
+{% extends 'layout.html' %} {% block body%}
+
+<div class="col-md-4 offset-md-4">
+    <form action="/edit/{{ compra.id}}" method="POST">
+        <div class="form-group">
+            <label for="tipoEgreso" id="tipoEgreso"> Tipo egreso</label>
+            <select name="tipoEgreso" class="form-control">
+          <option value="gasto">Gasto</option>
+          <option value="costo">Costo</option>
+        </select>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="tipoElemento" id="tipoElemento"> Tipo elemento</label>
+            <input type="text" name="tipoElemento" placeholder="tipo elemento" value="{{compra.tipoElemento}}" class="form-control">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="proveedor" id="proveedor"> Proveedor</label><br>
+            <input type="text" name="proveedor" placeholder="proveedor" value="{{compra.proveedor}}" class="form-control">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="formaPago" id="formaPago"> Forma de pago</label>
+            <select name="formaPago" class="form-control">
+              <option value="efectivo">Efectivo</option>
+              <option value="credito">Credito</option>
+              <option value="efectivoCuotas">Efectivo Cuotas</option>
+              <option value="debito">Debito</option>
+            </select>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="aprobacion" id="realizarPago"> Pago aprobado</label>
+            <select name="aprobacion" id="aprobacion" class="form-control">
+              <option value="1">Si</option>
+              <option value="0">No</option>
+            </select>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="realizarPago"> Realizar pago</label>
+            <select name="realizarPago" class="form-control">
+          <option value="1">Si</option>
+          <option value="0">No</option>
+        </select>
+        </div>
+
+
+        <br>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success btn-block"> Guardar </button>
+        </div>
+
+    </form>
+</div>
+
+
+{% endblock%}

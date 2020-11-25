@@ -1,0 +1,107 @@
+{% extends 'layout.html' %} {% block body%}
+<div class="row">
+    <div class="col-md-5">
+        {% with messages = get_flashed_messages() %} {% if messages%} {% for message in messages %}
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+        </div>
+        {% endfor %} {% endif %} {% endwith %}
+        <div class="class-container">
+            <div class="card card-body">
+                <form action="/compras" method="POST">
+                    <div class="form-group">
+                        <label for="tipoEgreso" id="tipoEgreso"> Tipo egreso</label>
+                        <select name="tipoEgreso" class="form-control">
+                            <option value="gasto">Gasto</option>
+                            <option value="costo">Costo</option>
+                      </select>
+                    </div>
+
+                    <div class="div-formgroup">
+                        <label for="tipoElemento" id="tipoElemento"> Tipo elemento</label>
+                        <input type="text" name="tipoElemento" placeholder="tipo elemento" class="form-control">
+                    </div>
+                    <br>
+
+                    <div class="div-formgroup">
+                        <label for="proveedor" id="proveedor"> Proveedor</label>
+                        <input type="text" name="proveedor" placeholder="proveedor" class="form-control">
+                    </div>
+                    <br>
+
+                    <div class="div-formgroup">
+                        <label for="formaPago" id="formaPago"> Forma de pago</label>
+                        <select name="formaPago" class="form-control">
+                            <option value="efectivo">Efectivo</option>
+                            <option value="credito">Credito</option>
+                            <option value="efectivoCuotas">Efectivo Cuotas</option>
+                            <option value="debito">Debito</option>
+                        </select>
+                    </div>
+                    <br>
+
+                    <div class="div-formgroup">
+                        <label for="aprobacion" id="realizarPago"> Pago aprobado</label>
+                        <select name="aprobacion" id="aprobacion" class="form-control">
+                            <option value="1">Si</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                    <br>
+
+                    <div class="div-formgroup">
+                        <label for="realizarPago"> Realizar pago</label>
+                        <select name="realizarPago" class="form-control">
+                            <option value="1">Si</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Guardar </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <table class="table table-striped table-bordered bg-white table-sm">
+            <thead>
+                <tr>
+                    <td>Tipo egreso </td>
+                    <td>Tipo elemento </td>
+                    <td>Proveedor </td>
+                    <td>Forma pago </td>
+                    <td>Aprobacion </td>
+                    <td>Realizar pago </td>
+                    <td>Operaciones </td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for compra in compras %}
+                <tr>
+                    <td> {{ compra.tipoEgreso }}</td>
+                    <td> {{ compra.tipoElemento }}</td>
+                    <td> {{ compra.proveedor }}</td>
+                    <td> {{ compra.formaPago }}</td>
+                    <td> {{ compra.aprobacion }}</td>
+                    <td> {{ compra.realizarPago }}</td>
+                    <td>
+                        <a href="/compras/{{compra.id}}" class="btn btn-secondary">Edit </a>
+                        <a href="/delete/{{compra.id}}" class="btn btn-danger"> Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+{% endblock %}
